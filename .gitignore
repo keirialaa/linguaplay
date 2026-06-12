@@ -1,0 +1,42 @@
+# Environment & secrets
+.env
+.env.local
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Audio/video downloads & transcripts
+*.mp3
+*.wav
+*.mp4
+*.m4a
+downloads/
+audio/
+transcripts/*.txt
+transcripts/*.json
+
+# Vector DB local caches 
+*.sqlite3
+chroma_db/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# LangSmith / logs
+*.log
+logs/
