@@ -28,6 +28,3 @@ def transcribe_audio(file_path: str, model_name: str = "whisper-1") -> Any:
         timestamp_granularities=["segment"],
     )
     return transcription.segments, transcription.language 
-
-
-print(transcribe_audio("downloads/kllPRPFmi1c.mp3"))

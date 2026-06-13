@@ -20,7 +20,7 @@ def get_or_create_index():
     return pc.Index(INDEX_NAME)
 
 
-def upsert_chunks(chunks: list[dict], video_id: str, language: str) -> None:
+def upsert_chunks(index, chunks: list[dict], video_id: str, language: str) -> None:
     """Embed transcript chunks and upsert them into Pinecone."""
     vectors = []
     for i, chunk in enumerate(chunks):
