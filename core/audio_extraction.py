@@ -40,5 +40,5 @@ def download_audio(url: str, output_path: str="downloads/%(id)s.%(ext)s") -> tup
         raise AudioExtractionError(f"Could not donload audio from '{url}': {e}") from e
     
 
-
+download_audio("https://www.youtube.com/watch?v=kllPRPFmi1c")
 

@@ -1,10 +1,11 @@
 import os 
+from typing import Any
 from dotenv import load_dotenv
 from openai import OpenAI
 
 load_dotenv()
 
-def transcribe_audio(file_path: str, model_name: str = "gpt-4o-mini-transcribe") -> str:
+def transcribe_audio(file_path: str, model_name: str = "whisper-1") -> Any:
     """Transcribe an audio track. 
     Args:
         file_path: Path to the audio file on your local machine. 
@@ -21,9 +22,12 @@ def transcribe_audio(file_path: str, model_name: str = "gpt-4o-mini-transcribe")
 
     with open(file_path, "rb") as audio_file:
         transcription = client.audio.transcriptions.create(
-        model="gpt-4o-transcribe", 
-        file=audio_file
+        model=model_name,
+        file=audio_file,
+        response_format="verbose_json",
+        timestamp_granularities=["segment"],
     )
-    return transcription.text 
+    return transcription.segments, transcription.language 
 
 
+print(transcribe_audio("downloads/kllPRPFmi1c.mp3"))
