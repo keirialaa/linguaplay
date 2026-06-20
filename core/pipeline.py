@@ -1,9 +1,8 @@
-from audio_extraction import download_audio, AudioExtractionError
-from chunking import chunk_transcript
-from transcription import transcribe_audio
-from vector_store import get_or_create_index, upsert_chunks, search_video
+from core.audio_extraction import download_audio, AudioExtractionError
+from core.chunking import chunk_transcript
+from core.transcription import transcribe_audio
+from core.vector_store import get_or_create_index, upsert_chunks, search_video
 
-VIDEO_URL = "https://www.youtube.com/watch?v=-vKycX4MiRM"
 
 def process_video(url: str) -> dict:
     """Run the full pipeline: download, transcribe, chunk, and store a video.
@@ -37,4 +36,5 @@ def process_video(url: str) -> dict:
         "language": language,
         "num_chunks": len(chunks),
     }
+
 
