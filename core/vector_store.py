@@ -39,8 +39,12 @@ def upsert_chunks(index, chunks: list[dict], video_id: str, language: str) -> No
     index.upsert(vectors=vectors)
 
 
-def search_video(query: str, video_id: str, top_k: int = 5):
-    """Search a video's transcript chunks for relevant content."""
+def search_video(query: str, video_id: str, top_k: int = 5, score_threshold: float = 0.0):
+    """Search a video's transcript chunks for relevant content.
+
+    Matches below score_threshold (cosine similarity) are dropped, since
+    they're too unrelated to the query to be useful context.
+    """
     query_vector = embeddings.embed_query(query)
     results = index.query(
         vector=query_vector,
@@ -48,7 +52,11 @@ def search_video(query: str, video_id: str, top_k: int = 5):
         top_k=top_k,
         include_metadata=True,
     )
-    return [match["metadata"] for match in results["matches"]]
+    return [
+        match["metadata"]
+        for match in results["matches"]
+        if match["score"] >= score_threshold
+    ]
 
 
 
