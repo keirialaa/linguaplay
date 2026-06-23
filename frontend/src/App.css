@@ -1,0 +1,55 @@
+:root {
+  --font-app: "Hanken Grotesk", sans-serif;
+}
+body {
+  font-family: var(--font-app);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+h2 {
+  text-align: center;
+}
+h3 {
+  font-weight: 400;
+  max-width: 600px;
+  text-align: center;
+}
+input {
+  height: 50px;
+  width: 500px;
+  border-radius: 15px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 4px 4px 4px 16px;
+  background: white;
+  margin-top: 48px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  border: none;
+  border-radius: 15px;
+  padding: 8px 16px;
+  height: 45px;
+  width: 150px;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
