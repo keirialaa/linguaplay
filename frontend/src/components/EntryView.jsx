@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 function EntryView({ changeStage }) {
+  const [videoURL, setVideoURL] = useState("");
   return (
     <div className="container">
       <div className="entry-text">
@@ -9,8 +12,19 @@ function EntryView({ changeStage }) {
         </h3>
       </div>
       <form className="search-bar">
-        <input type="text" placeholder="Paste Youtube link" required></input>
-        <button type="button" onClick={() => changeStage("processing")}>
+        <input
+          type="text"
+          value={videoURL}
+          onChange={(e) => setVideoURL(e.target.value)}
+          placeholder="Paste Youtube link..."
+          required
+        ></input>
+        <button
+          type="button"
+          onClick={() => {
+            changeStage("processing");
+          }}
+        >
           Transcribe
         </button>
       </form>
