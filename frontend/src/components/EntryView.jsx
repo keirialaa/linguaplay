@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-function EntryView({ changeStage }) {
+function EntryView({
+  changeStage,
+  setVideoId,
+  setTitle,
+  setDuration,
+  setChannel,
+}) {
   const [videoURL, setVideoURL] = useState("");
   return (
     <div className="container">
@@ -21,8 +27,24 @@ function EntryView({ changeStage }) {
         ></input>
         <button
           type="button"
-          onClick={() => {
+          onClick={async () => {
             changeStage("processing");
+            try {
+              const response = await fetch("http://127.0.0.1:8000/videos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url: videoURL }),
+              });
+              const result = await response.json();
+              setVideoId(result.video_id);
+              setTitle(result.title);
+              setDuration(result.duration);
+              setChannel(result.channel);
+              changeStage("chat");
+            } catch (error) {
+              console.error("Failed to process video:", error);
+              changeStage("entry");
+            }
           }}
         >
           Transcribe

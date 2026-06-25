@@ -100,6 +100,7 @@ input {
 .context-panel-text > h3 {
   text-align: left;
   margin: 0;
+  margin-bottom: 4px;
 }
 .difficulty-header {
   display: flex;
@@ -110,10 +111,9 @@ input {
   flex-direction: column;
   gap: 0;
 }
-.video {
+video {
   height: 250px;
   width: 100%;
-  border: 1px solid black;
   margin-bottom: 24px;
   border-radius: 18px;
 }
@@ -129,4 +129,11 @@ input {
 }
 .tab {
   padding: 8px;
+}
+.context-panel-container iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 16px;
 }

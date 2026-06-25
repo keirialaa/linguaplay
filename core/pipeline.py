@@ -19,6 +19,10 @@ def process_video(url: str) -> dict:
     # Download audio
     audio_path, info = download_audio(url)
     video_id = info["id"]
+    title = info["title"]
+    duration = info["duration"]
+    channel = info["channel"]
+
 
     # Transcribe
     segments, language = transcribe_audio(audio_path)
@@ -35,6 +39,9 @@ def process_video(url: str) -> dict:
         "video_id": video_id,
         "language": language,
         "num_chunks": len(chunks),
+        "title": title,
+        "duration": duration,
+        "channel": channel
     }
 
 
