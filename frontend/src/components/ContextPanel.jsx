@@ -5,7 +5,17 @@ function formatDuration(totalSeconds) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-function ContextPanel({ videoId, title, channel, duration }) {
+function ContextPanel({
+  videoId,
+  title,
+  channel,
+  duration,
+  cefrLevel,
+  complexity,
+  diffDescr,
+  expressions,
+  cultureNote,
+}) {
   return (
     <div className="context-panel-container">
       <iframe
@@ -22,14 +32,13 @@ function ContextPanel({ videoId, title, channel, duration }) {
         <div className="difficulty box">
           <div className="difficulty-header">
             <p className="box-heading">Difficulty</p>
-            <p>B1 • Medium</p>
+            <p>
+              {cefrLevel} • {complexity}
+            </p>
           </div>
           <div className="difficulty-bars"></div>
           <div className="difficulty-description">
-            <p>
-              Häufiger Wortschatz, einige Nebensätze (dass-, wenn-Sätze). Ideal
-              zum Festigen.
-            </p>
+            <p>{diffDescr}</p>
           </div>
         </div>
         <div className="expression box">
@@ -39,10 +48,7 @@ function ContextPanel({ videoId, title, channel, duration }) {
         </div>
         <div className="culture-note box">
           <p className="box-heading">Culture note</p>
-          <p>
-            Germans often value clarity over politeness. Directness is
-            considered honest - not rude.
-          </p>
+          <p>{cultureNote}</p>
         </div>
       </div>
     </div>

@@ -10,6 +10,11 @@ function App() {
   const [title, setTitle] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channel, setChannel] = useState(null);
+  const [cefrLevel, setCefrLevel] = useState(null);
+  const [complexity, setComplexity] = useState(null);
+  const [diffDescr, setDiffDescr] = useState(null);
+  const [expressions, setExpressions] = useState(null);
+  const [cultureNote, setCultureNote] = useState(null);
 
   if (stage === "entry") {
     return (
@@ -19,6 +24,11 @@ function App() {
         setTitle={setTitle}
         setDuration={setDuration}
         setChannel={setChannel}
+        setCefrLevel={setCefrLevel}
+        setComplexity={setComplexity}
+        setDiffDescr={setDiffDescr}
+        setExpressions={setExpressions}
+        setCultureNote={setCultureNote}
       ></EntryView>
     );
   } else if (stage === "processing") {
@@ -30,6 +40,11 @@ function App() {
         title={title}
         duration={duration}
         channel={channel}
+        cefrLevel={cefrLevel}
+        complexity={complexity}
+        diffDescr={diffDescr}
+        expressions={expressions}
+        cultureNote={cultureNote}
       ></ChatView>
     );
   }

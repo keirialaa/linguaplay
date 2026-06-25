@@ -6,6 +6,11 @@ function EntryView({
   setTitle,
   setDuration,
   setChannel,
+  setCefrLevel,
+  setComplexity,
+  setDiffDescr,
+  setExpressions,
+  setCultureNote,
 }) {
   const [videoURL, setVideoURL] = useState("");
   return (
@@ -40,6 +45,11 @@ function EntryView({
               setTitle(result.title);
               setDuration(result.duration);
               setChannel(result.channel);
+              setCefrLevel(result.analysis.cefr_level);
+              setComplexity(result.analysis.complexity);
+              setDiffDescr(result.analysis.difficulty_description);
+              setExpressions(result.analysis.expressions);
+              setCultureNote(result.analysis.culture_note);
               changeStage("chat");
             } catch (error) {
               console.error("Failed to process video:", error);

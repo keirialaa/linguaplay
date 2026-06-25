@@ -2,6 +2,7 @@ from core.audio_extraction import download_audio, AudioExtractionError
 from core.chunking import chunk_transcript
 from core.transcription import transcribe_audio
 from core.vector_store import get_or_create_index, upsert_chunks, search_video
+from core.analysis import analyze_transcript
 
 
 def process_video(url: str) -> dict:
@@ -27,6 +28,7 @@ def process_video(url: str) -> dict:
     # Transcribe
     segments, language = transcribe_audio(audio_path)
     segments_dicts = [{"start": segment.start, "end": segment.end, "text": segment.text} for segment in segments]
+    full_text = " ".join([segment["text"] for segment in segments_dicts])
 
     # Chunk
     chunks = chunk_transcript(segments_dicts)
@@ -35,13 +37,17 @@ def process_video(url: str) -> dict:
     index = get_or_create_index()
     upsert_chunks(index, chunks, video_id, language)
 
+    # Analyze the video 
+    analysis = analyze_transcript(full_text)
+
     return {
         "video_id": video_id,
         "language": language,
         "num_chunks": len(chunks),
         "title": title,
         "duration": duration,
-        "channel": channel
+        "channel": channel, 
+        "analysis": analysis
     }
 
 
