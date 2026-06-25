@@ -8,9 +8,9 @@ function App() {
   const [stage, setStage] = useState("entry");
 
   if (stage === "entry") {
-    return <EntryView></EntryView>;
+    return <EntryView changeStage={setStage}></EntryView>;
   } else if (stage === "processing") {
-    return <ProcessingView></ProcessingView>;
+    return <ProcessingView changeStage={setStage}></ProcessingView>;
   } else if (stage === "chat") {
     return <ChatView></ChatView>;
   }

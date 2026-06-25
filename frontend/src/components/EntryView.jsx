@@ -1,4 +1,4 @@
-function EntryView() {
+function EntryView({ changeStage }) {
   return (
     <div className="container">
       <div className="entry-text">
@@ -10,9 +10,10 @@ function EntryView() {
       </div>
       <form className="search-bar">
         <input type="text" placeholder="Paste Youtube link" required></input>
-        <button>Transcribe</button>
+        <button type="button" onClick={() => changeStage("processing")}>
+          Transcribe
+        </button>
       </form>
-      <div></div>
     </div>
   );
 }
