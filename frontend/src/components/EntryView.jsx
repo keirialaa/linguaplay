@@ -11,6 +11,7 @@ function EntryView({
   setDiffDescr,
   setExpressions,
   setCultureNote,
+  setLanguage,
 }) {
   const [videoURL, setVideoURL] = useState("");
   return (
@@ -50,6 +51,7 @@ function EntryView({
               setDiffDescr(result.analysis.difficulty_description);
               setExpressions(result.analysis.expressions);
               setCultureNote(result.analysis.culture_note);
+              setLanguage(result.language);
               changeStage("chat");
             } catch (error) {
               console.error("Failed to process video:", error);

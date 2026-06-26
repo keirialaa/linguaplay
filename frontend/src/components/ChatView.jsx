@@ -12,10 +12,11 @@ function ChatView({
   diffDescr,
   expressions,
   cultureNote,
+  language,
 }) {
   return (
     <div className="container-chat-view">
-      <Header></Header>
+      <Header language={language} cefrLevel={cefrLevel}></Header>
       <div className="content-chat-view">
         <ContextPanel
           videoId={videoId}

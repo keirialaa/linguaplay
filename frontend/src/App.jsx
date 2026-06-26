@@ -15,6 +15,7 @@ function App() {
   const [diffDescr, setDiffDescr] = useState(null);
   const [expressions, setExpressions] = useState(null);
   const [cultureNote, setCultureNote] = useState(null);
+  const [language, setLanguage] = useState(null);
 
   if (stage === "entry") {
     return (
@@ -29,6 +30,7 @@ function App() {
         setDiffDescr={setDiffDescr}
         setExpressions={setExpressions}
         setCultureNote={setCultureNote}
+        setLanguage={setLanguage}
       ></EntryView>
     );
   } else if (stage === "processing") {
@@ -45,6 +47,7 @@ function App() {
         diffDescr={diffDescr}
         expressions={expressions}
         cultureNote={cultureNote}
+        language={language}
       ></ChatView>
     );
   }

@@ -8,12 +8,6 @@ function ProcessingView({ changeStage }) {
           language, and becomes your language partner.
         </h3>
       </div>
-      <form className="search-bar">
-        <input type="text" placeholder="Paste Youtube link" required></input>
-        <button type="button" onClick={() => changeStage("chat")}>
-          Transcribe
-        </button>
-      </form>
       <div className="processing-status"></div>
     </div>
   );

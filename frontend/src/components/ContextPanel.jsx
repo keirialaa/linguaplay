@@ -43,8 +43,16 @@ function ContextPanel({
         </div>
         <div className="expression box">
           <p className="box-heading">Expressions</p>
-          <p>kein Blatt vor den Mund nehmen</p>
-          <p>to speak bluntly</p>
+          {expressions && expressions.length > 0 ? (
+            expressions.map((exp, i) => (
+              <div className="expression-item" key={i}>
+                <p className="expression-phrase">{exp.phrase}</p>
+                <p className="expression-explanation">{exp.explanation}</p>
+              </div>
+            ))
+          ) : (
+            <p>No relevant information detected</p>
+          )}
         </div>
         <div className="culture-note box">
           <p className="box-heading">Culture note</p>
