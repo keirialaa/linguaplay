@@ -8,7 +8,9 @@ function ProcessingView({ changeStage }) {
           language, and becomes your language partner.
         </h3>
       </div>
-      <div className="processing-status"></div>
+      <div className="processing-status">
+        <p>Processing video...</p>
+      </div>
     </div>
   );
 }

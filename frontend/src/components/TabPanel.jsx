@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Chat from "./Chat";
 
-function TabPanel() {
+function TabPanel({ videoId }) {
   const [tabState, setTabState] = useState("chat");
 
   let activeTab;
   if (tabState === "chat") {
-    activeTab = <Chat></Chat>;
+    activeTab = <Chat videoId={videoId}></Chat>;
   } else if (tabState === "transcript") {
     activeTab = <Transcript></Transcript>;
   } else {

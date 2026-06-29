@@ -21,6 +21,15 @@ class VideoRequest(BaseModel):
     url: str
 
 
+class ChatMessage(BaseModel):
+    text: str
+    video_id: str
+
 @app.post("/videos")
 def video_pipeline(video_url: VideoRequest):
     return process_video(video_url.url)
+
+
+@app.post("/chat")
+def send_message(message: ChatMessage):
+    return ask(message.text, message.video_id)

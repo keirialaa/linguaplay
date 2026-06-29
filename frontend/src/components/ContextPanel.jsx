@@ -32,9 +32,11 @@ function ContextPanel({
         <div className="difficulty box">
           <div className="difficulty-header">
             <p className="box-heading">Difficulty</p>
-            <p>
-              {cefrLevel} • {complexity}
-            </p>
+            <div className="diff-label">
+              <p>
+                {cefrLevel} • {complexity}
+              </p>
+            </div>
           </div>
           <div className="difficulty-bars"></div>
           <div className="difficulty-description">
@@ -43,16 +45,20 @@ function ContextPanel({
         </div>
         <div className="expression box">
           <p className="box-heading">Expressions</p>
-          {expressions && expressions.length > 0 ? (
-            expressions.map((exp, i) => (
-              <div className="expression-item" key={i}>
-                <p className="expression-phrase">{exp.phrase}</p>
-                <p className="expression-explanation">{exp.explanation}</p>
-              </div>
-            ))
-          ) : (
-            <p>No relevant information detected</p>
-          )}
+          <div className="expression-items">
+            {expressions && expressions.length > 0 ? (
+              expressions.map((exp, i) => (
+                <div className="expression-item" key={i}>
+                  <p className="expression-phrase">{exp.phrase}</p>
+                  <p className="expression-explanation">
+                    <i>{exp.explanation}</i>
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p>No relevant information detected</p>
+            )}
+          </div>
         </div>
         <div className="culture-note box">
           <p className="box-heading">Culture note</p>

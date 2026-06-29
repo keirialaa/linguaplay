@@ -39,7 +39,7 @@ def upsert_chunks(index, chunks: list[dict], video_id: str, language: str) -> No
     index.upsert(vectors=vectors)
 
 
-def search_video(query: str, video_id: str, top_k: int = 5, score_threshold: float = 0.2):
+def search_video(query: str, video_id: str, top_k: int = 5, score_threshold: float = 0.1):
     """Search a video's transcript chunks for relevant content.
 
     Matches below score_threshold (cosine similarity) are dropped, since

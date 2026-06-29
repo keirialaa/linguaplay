@@ -1,5 +1,4 @@
 import ContextPanel from "./ContextPanel";
-import Header from "./Header";
 import TabPanel from "./TabPanel";
 
 function ChatView({
@@ -16,7 +15,6 @@ function ChatView({
 }) {
   return (
     <div className="container-chat-view">
-      <Header language={language} cefrLevel={cefrLevel}></Header>
       <div className="content-chat-view">
         <ContextPanel
           videoId={videoId}
@@ -29,7 +27,7 @@ function ChatView({
           expressions={expressions}
           cultureNote={cultureNote}
         ></ContextPanel>
-        <TabPanel></TabPanel>
+        <TabPanel videoId={videoId}></TabPanel>
       </div>
     </div>
   );
