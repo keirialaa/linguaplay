@@ -263,3 +263,18 @@ video {
   font-weight: 800;
   color: #0474d6;
 }
+
+/* ===== Vocabulary tab ===== */
+.vocab-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px;
+}
+.vocab-term {
+  margin-bottom: 24px;
+}
+.term,
+.term-translation {
+  font-weight: 700;
+}

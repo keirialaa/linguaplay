@@ -13,6 +13,7 @@ function ChatView({
   cultureNote,
   language,
   chunks,
+  vocab,
 }) {
   return (
     <div className="container-chat-view">
@@ -28,7 +29,7 @@ function ChatView({
           expressions={expressions}
           cultureNote={cultureNote}
         ></ContextPanel>
-        <TabPanel videoId={videoId} chunks={chunks}></TabPanel>
+        <TabPanel videoId={videoId} chunks={chunks} vocab={vocab}></TabPanel>
       </div>
     </div>
   );

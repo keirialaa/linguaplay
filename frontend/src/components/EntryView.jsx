@@ -13,6 +13,7 @@ function EntryView({
   setCultureNote,
   setLanguage,
   setChunks,
+  setVocab,
 }) {
   const [videoURL, setVideoURL] = useState("");
   return (
@@ -54,6 +55,7 @@ function EntryView({
               setCultureNote(result.analysis.culture_note);
               setLanguage(result.language);
               setChunks(result.chunks);
+              setVocab(result.analysis.vocabulary);
               changeStage("chat");
             } catch (error) {
               console.error("Failed to process video:", error);

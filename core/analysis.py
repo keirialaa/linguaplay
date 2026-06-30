@@ -2,6 +2,15 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 
+class VocabularyItem(BaseModel):
+    term: str
+    translation: str
+    context: str = Field(
+        description="1-2 sentences showing how this term was actually used "
+        "in the transcript — not an invented example sentence."
+    )
+
+
 class Expression(BaseModel):
     phrase: str
     explanation: str = Field(
@@ -29,6 +38,12 @@ class TranscriptAnalysis(BaseModel):
         "culture where the video's language is spoken, anchored to a specific word, "
         "phrase, or behavior actually used in the transcript — not a summary of what "
         "the video is about. 'No relevant information detected' if none applies."
+    )
+    vocabulary: list[VocabularyItem] = Field(
+        description="10-20 notable vocabulary terms specific to this video's content. "
+        "Exclude generic/common words (e.g. 'this', 'good', 'walk') and exclude anything "
+        "already covered in expressions — vocabulary should be individual words or short "
+        "phrases worth learning, not idioms."
     )
 
 

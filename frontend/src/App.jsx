@@ -17,6 +17,7 @@ function App() {
   const [cultureNote, setCultureNote] = useState(null);
   const [language, setLanguage] = useState(null);
   const [chunks, setChunks] = useState(null);
+  const [vocab, setVocab] = useState(null);
 
   if (stage === "entry") {
     return (
@@ -33,6 +34,7 @@ function App() {
         setCultureNote={setCultureNote}
         setLanguage={setLanguage}
         setChunks={setChunks}
+        setVocab={setVocab}
       ></EntryView>
     );
   } else if (stage === "processing") {
@@ -51,6 +53,7 @@ function App() {
         cultureNote={cultureNote}
         language={language}
         chunks={chunks}
+        vocab={vocab}
       ></ChatView>
     );
   }
