@@ -72,6 +72,36 @@ video {
   cursor: pointer;
   font-size: 18px;
 }
+.processing-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 64px;
+  width: 450px;
+}
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #eee;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  width: 40%;
+  border-radius: 4px;
+  background: #333;
+  animation: progress-slide 1.4s ease-in-out infinite;
+}
+@keyframes progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
 
 /* ===== Chat View Layout (header + overall frame) ===== */
 .header {
