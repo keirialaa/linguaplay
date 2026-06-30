@@ -47,7 +47,8 @@ def process_video(url: str) -> dict:
         "title": title,
         "duration": duration,
         "channel": channel, 
-        "analysis": analysis
+        "analysis": analysis, 
+        "chunks": chunks
     }
 
 

@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Chat from "./Chat";
+import Transcript from "./Transcript";
+import Vocabulary from "./Vocabulary";
 
-function TabPanel({ videoId }) {
+function TabPanel({ videoId, chunks }) {
   const [tabState, setTabState] = useState("chat");
 
   let activeTab;
   if (tabState === "chat") {
     activeTab = <Chat videoId={videoId}></Chat>;
   } else if (tabState === "transcript") {
-    activeTab = <Transcript></Transcript>;
+    activeTab = <Transcript chunks={chunks}></Transcript>;
   } else {
     activeTab = <Vocabulary></Vocabulary>;
   }
@@ -24,14 +26,20 @@ function TabPanel({ videoId }) {
         </div>
         <div
           className={
-            tabState === "transcript" ? "tab transcript current" : "tab chat"
+            tabState === "transcript"
+              ? "tab transcript current"
+              : "tab vocabulary"
           }
           onClick={() => setTabState("transcript")}
         >
           <p>Transcript</p>
         </div>
         <div
-          className="tab vocabulary"
+          className={
+            tabState === "vocabulary"
+              ? "tab vocabulary current"
+              : "tab vocabulary"
+          }
           onClick={() => setTabState("vocabulary")}
         >
           <p>Vocabulary</p>
