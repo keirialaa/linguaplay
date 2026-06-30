@@ -1,4 +1,24 @@
+import { useEffect, useState } from "react";
+
+const PROCESSING_MESSAGES = [
+  "Extracting audio...",
+  "Detecting language...",
+  "Transcribing speech...",
+  "Identifying expressions and idioms...",
+  "Analyzing difficulty level...",
+  "Almost there...",
+];
+
 function ProcessingView({ changeStage }) {
+  const [messageIndex, setMessageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessageIndex((prev) => (prev + 1) % PROCESSING_MESSAGES.length);
+    }, 1800);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="container">
       <div className="entry-text">
@@ -9,7 +29,10 @@ function ProcessingView({ changeStage }) {
         </h3>
       </div>
       <div className="processing-status">
-        <p>Processing video...</p>
+        <div className="progress-bar-track">
+          <div className="progress-bar-fill"></div>
+        </div>
+        <p>{PROCESSING_MESSAGES[messageIndex]}</p>
       </div>
     </div>
   );
