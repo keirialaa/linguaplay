@@ -57,13 +57,19 @@ def analyze_transcript(text: str):
     {text}
 
     Assess the CEFR level (A1-C2) and complexity (Low/Medium/High) of the language used.
-    Identify any notable idioms or expressions. For each, give a brief, direct
-    explanation of its meaning/usage — write it as the definition itself, not as a
-    sentence describing the expression. For example, for "day and night" write
-    "significant difference between two situations, often used to emphasize
-    improvement or change" — NOT "this expression means there is a significant
+    Identify any notable idioms or expressions — only include phrases whose meaning
+    cannot be derived literally from the individual words. Do NOT include phrases that
+    are used literally in the transcript, even if they are vivid or unusual. For example,
+    "throw onto a pile of mattresses" is not an idiom if that is literally what happens
+    in the video. Only include genuinely idiomatic or figurative expressions where a
+    language learner would not understand the meaning from the words alone.
+    For each, give a brief, direct explanation of its meaning/usage — write it as the
+    definition itself, not as a sentence describing the expression. For example, for
+    "day and night" write "significant difference between two situations, often used to
+    emphasize improvement or change" — NOT "this expression means there is a significant
     difference..." or "this idiom is used to describe...". Never start an explanation
-    with "this expression means" or "this idiom means".
+    with "this expression means" or "this idiom means". If no genuinely idiomatic
+    expressions are found, return an empty list.
 
     For the culture note, do NOT summarize what the video is about or describe its
     topic/setting. Instead, find a specific word, phrase, or way someone speaks/behaves
