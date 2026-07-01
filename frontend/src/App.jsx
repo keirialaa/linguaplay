@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import "./App.css";
 import ChatView from "./components/ChatView";
 import EntryView from "./components/EntryView";
@@ -6,6 +6,8 @@ import ProcessingView from "./components/ProcessingView";
 
 function App() {
   const [stage, setStage] = useState("entry");
+  const [processingError, setProcessingError] = useState("");
+  const sessionId = useId();
   const [videoId, setVideoId] = useState(null);
   const [title, setTitle] = useState(null);
   const [duration, setDuration] = useState(null);
@@ -23,6 +25,8 @@ function App() {
     return (
       <EntryView
         changeStage={setStage}
+        setProcessingError={setProcessingError}
+        processingError={processingError}
         setVideoId={setVideoId}
         setTitle={setTitle}
         setDuration={setDuration}
@@ -43,6 +47,7 @@ function App() {
     return (
       <ChatView
         videoId={videoId}
+        sessionId={sessionId}
         title={title}
         duration={duration}
         channel={channel}
@@ -57,5 +62,6 @@ function App() {
       ></ChatView>
     );
   }
+  return null;
 }
 export default App;
