@@ -128,6 +128,20 @@ LangSmith tracing is optional — set `LANGCHAIN_API_KEY`, `LANGCHAIN_PROJECT`, 
             └── Vocabulary.jsx
 ```
 
+## Observability
+
+LangSmith tracing is integrated for monitoring agent behaviour in development. Each user message produces a trace capturing the full reasoning chain: which tool the agent chose to call, the inputs and outputs of each tool, token usage, and latency. This makes it straightforward to debug unexpected tool routing, inspect RAG retrieval quality, and evaluate answer grounding.
+
+To enable, add to your `.env`:
+
+```
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_API_KEY=your_key_here
+LANGCHAIN_PROJECT=linguaplay
+```
+
+Planned: LangSmith dataset evaluations to systematically measure retrieval accuracy and answer quality across a curated set of test questions.
+
 ## Known limitations
 
 - Session state is held in memory — restarting the server clears conversation history and requires reprocessing any video before chatting
