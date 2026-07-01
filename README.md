@@ -4,7 +4,6 @@ Turn any YouTube video into an interactive language class. Paste a link — Ling
 
 <img width="1583" height="972" alt="Screenshot 2026-07-01 at 20 22 04" src="https://github.com/user-attachments/assets/d58eb270-689d-4cc4-bfd2-e994e0ca2184" />
 
-
 ## What it does
 
 - **Transcribes** any public YouTube video using OpenAI Whisper, with segment-level timestamps
@@ -65,7 +64,7 @@ FastAPI  ◄──►  React (Vite)
 
 ```bash
 # Clone the repo
-git clone https://github.com/keirialaa/language-learning-bot.git
+git clone https://github.com/keirialaa/linguaplay.git
 cd language-learning-bot
 
 # Create and activate a virtual environment
