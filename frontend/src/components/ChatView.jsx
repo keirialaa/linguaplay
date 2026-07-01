@@ -3,6 +3,7 @@ import TabPanel from "./TabPanel";
 
 function ChatView({
   videoId,
+  sessionId,
   title,
   duration,
   channel,
@@ -29,7 +30,7 @@ function ChatView({
           expressions={expressions}
           cultureNote={cultureNote}
         ></ContextPanel>
-        <TabPanel videoId={videoId} chunks={chunks} vocab={vocab}></TabPanel>
+        <TabPanel videoId={videoId} sessionId={sessionId} chunks={chunks} vocab={vocab}></TabPanel>
       </div>
     </div>
   );

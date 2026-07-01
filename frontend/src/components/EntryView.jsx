@@ -1,7 +1,11 @@
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000";
+
 function EntryView({
   changeStage,
+  processingError,
+  setProcessingError,
   setVideoId,
   setTitle,
   setDuration,
@@ -36,13 +40,18 @@ function EntryView({
         <button
           type="button"
           onClick={async () => {
+            setProcessingError("");
             changeStage("processing");
             try {
-              const response = await fetch("http://127.0.0.1:8000/videos", {
+              const response = await fetch(`${API_URL}/videos`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ url: videoURL }),
               });
+              if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.detail || "Something went wrong.");
+              }
               const result = await response.json();
               setVideoId(result.video_id);
               setTitle(result.title);
@@ -57,8 +66,8 @@ function EntryView({
               setChunks(result.chunks);
               setVocab(result.analysis.vocabulary);
               changeStage("chat");
-            } catch (error) {
-              console.error("Failed to process video:", error);
+            } catch (err) {
+              setProcessingError(err.message);
               changeStage("entry");
             }
           }}
@@ -66,6 +75,7 @@ function EntryView({
           Transcribe
         </button>
       </form>
+      {processingError && <p className="error-message">{processingError}</p>}
     </div>
   );
 }

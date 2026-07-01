@@ -1,5 +1,5 @@
 import yt_dlp
-from yt_dlp.utils import DownloadError
+from yt_dlp.utils import YoutubeDLError
 from typing import Any, cast
 
 
@@ -36,7 +36,7 @@ def download_audio(url: str, output_path: str="downloads/%(id)s.%(ext)s") -> tup
             # adjust extension
             audio_path = filename.rsplit(".", 1)[0] + ".mp3"
             return audio_path, info
-    except DownloadError as e:
+    except YoutubeDLError as e:
         raise AudioExtractionError(f"Could not download audio from '{url}': {e}") from e
     
 

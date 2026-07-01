@@ -1,6 +1,9 @@
+import logging
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from core.tools import make_tools
+
+logger = logging.getLogger(__name__)
 
 SYSTEM_PROMPT = (
     "You are a language-learning tutor helping a user understand a YouTube video. "
@@ -9,6 +12,7 @@ SYSTEM_PROMPT = (
     "about anything else. "
     "Use search_transcript to find relevant parts of the video to answer content questions. "
     "Use explain_language to explain grammar, vocabulary, idioms, or slang in context. "
+    "Use generate_quiz when the user asks to be tested or quizzed on the video content. "
     "If a tool reports no relevant context was found, tell the user you couldn't find "
     "that in the video rather than answering from your own general knowledge. "
     "When asked about specific vocabulary used in the video, always give the word or "
@@ -32,11 +36,11 @@ def get_agent(video_id: str):
     return _agents[video_id]
 
 
-def ask(query: str, video_id: str):
+def ask(query: str, video_id: str, session_id: str):
     """Send a user message to the video's agent and return its reply."""
     agent = get_agent(video_id)
     result = agent.invoke(
         {"messages": [{"role": "user", "content": query}]},
-        config={"configurable": {"thread_id": video_id}},
+        config={"configurable": {"thread_id": f"{session_id}:{video_id}"}},
     )
     return result["messages"][-1].content

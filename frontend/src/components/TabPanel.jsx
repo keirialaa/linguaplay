@@ -3,12 +3,12 @@ import Chat from "./Chat";
 import Transcript from "./Transcript";
 import Vocabulary from "./Vocabulary";
 
-function TabPanel({ videoId, chunks, vocab }) {
+function TabPanel({ videoId, sessionId, chunks, vocab }) {
   const [tabState, setTabState] = useState("chat");
 
   let activeTab;
   if (tabState === "chat") {
-    activeTab = <Chat videoId={videoId}></Chat>;
+    activeTab = <Chat videoId={videoId} sessionId={sessionId}></Chat>;
   } else if (tabState === "transcript") {
     activeTab = <Transcript chunks={chunks}></Transcript>;
   } else {

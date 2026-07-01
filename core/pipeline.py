@@ -1,8 +1,16 @@
 from core.audio_extraction import download_audio, AudioExtractionError
 from core.chunking import chunk_transcript
-from core.transcription import transcribe_audio
-from core.vector_store import get_or_create_index, upsert_chunks, search_video
+from core.transcription import transcribe_audio, TranscriptionError, EmptyTranscriptError
+from core.vector_store import get_or_create_index, upsert_chunks
 from core.analysis import analyze_transcript
+
+_cached_chunks = {}
+
+
+def get_chunks(video_id: str):
+    if video_id not in _cached_chunks:
+        raise KeyError(f"No transcript cached for video '{video_id}'. The server may have restarted — please reprocess the video.")
+    return _cached_chunks[video_id]
 
 
 def process_video(url: str) -> dict:
@@ -36,6 +44,7 @@ def process_video(url: str) -> dict:
     # Store in vector DB
     index = get_or_create_index()
     upsert_chunks(index, chunks, video_id, language)
+    _cached_chunks[video_id] = chunks
 
     # Analyze the video 
     analysis = analyze_transcript(full_text)
