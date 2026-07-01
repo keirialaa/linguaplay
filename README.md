@@ -2,7 +2,7 @@
 
 Turn any YouTube video into an interactive language class. Paste a link — LinguaPlay transcribes it, detects the language, and becomes your personal language tutor for that content.
 
-<img width="1579" height="980" alt="Screenshot 2026-07-01 at 19 58 45" src="https://github.com/user-attachments/assets/aec12803-d5fd-48f4-be9b-39eac36c09b8" />
+<img width="1579" height="980" alt="Screenshot 2026-07-01 at 19 58 45" src="https://github.com/user-attachments/assets/5579c6f5-20c5-44c0-bf41-7241c27c6c97" />
 
 
 ## What it does
