@@ -1,4 +1,5 @@
 import logging
+import json
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from core.tools import make_tools
@@ -43,4 +44,9 @@ def ask(query: str, video_id: str, session_id: str):
         {"messages": [{"role": "user", "content": query}]},
         config={"configurable": {"thread_id": f"{session_id}:{video_id}"}},
     )
-    return result["messages"][-1].content
+    # Check if the quiz generation tool was used by the agent 
+    for msg in reversed(result["messages"]):
+        if hasattr(msg, "name") and msg.name == "generate_quiz":
+            return {"type": "quiz", "data": json.loads(msg.content)}
+    return {"type": "text", "data": result["messages"][-1].content}
+
