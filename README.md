@@ -99,6 +99,14 @@ Open [http://localhost:5173](http://localhost:5173).
 | `OPENAI_API_KEY`       | OpenAI API key (Whisper + GPT-4o-mini)                                   |
 | `PINECONE_API_KEY`     | Pinecone API key                                                         |
 | `CORS_ALLOWED_ORIGINS` | Comma-separated list of allowed frontend origins (defaults to localhost) |
+| `APP_PASSWORD`         | Optional shared password required on all API requests                   |
+
+Frontend env vars (set in `frontend/.env.production` for deployment):
+
+| Variable            | Description                                     |
+| ------------------- | ----------------------------------------------- |
+| `VITE_API_URL`      | Backend URL (defaults to `http://127.0.0.1:8000`) |
+| `VITE_APP_PASSWORD` | Must match `APP_PASSWORD` set on the backend    |
 
 LangSmith tracing is optional — set `LANGCHAIN_API_KEY`, `LANGCHAIN_PROJECT`, and `LANGCHAIN_TRACING_V2=true` to enable it.
 

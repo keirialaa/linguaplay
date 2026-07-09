@@ -2,6 +2,7 @@ import { useState } from "react";
 import QuizMessage from "./QuizMessage";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000";
+const APP_PASSWORD = import.meta.env.VITE_APP_PASSWORD ?? "";
 
 function Chat({ videoId, sessionId }) {
   const [messages, setMessages] = useState([
@@ -32,7 +33,7 @@ function Chat({ videoId, sessionId }) {
     try {
       const response = await fetch(`${API_URL}/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-App-Password": APP_PASSWORD },
         body: JSON.stringify({
           text: input,
           video_id: videoId,
