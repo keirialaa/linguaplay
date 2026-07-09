@@ -1,8 +1,9 @@
+import random
 from langchain.tools import tool
 from core.vector_store import search_video
 from core.pipeline import get_chunks
 from langchain_openai import ChatOpenAI
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 llm = ChatOpenAI(model="gpt-4o-mini")
 
@@ -11,7 +12,16 @@ class QuizQuestion(BaseModel):
     question: str
     correct_answer: str
     timestamp: float
-    options: list[str]
+    distractors: list[str]
+    options: list[str] = []
+
+    @model_validator(mode="after")
+    def build_options(self):
+        options = list(self.distractors[:3])
+        insert_at = random.randint(0, len(options))
+        options.insert(insert_at, self.correct_answer)
+        self.options = options
+        return self
 
 
 class Quiz(BaseModel):
@@ -25,7 +35,6 @@ def make_tools(video_id: str):
     LLM never has to supply it itself.
     """
 
-
     @tool
     def search_transcript(query: str):
         """
@@ -37,7 +46,6 @@ def make_tools(video_id: str):
         if not chunks:
             return "No relevant context found in this video's transcript."
         return chunks
-
 
     @tool
     def explain_language(query: str):
@@ -56,7 +64,6 @@ def make_tools(video_id: str):
             f"Explain the following in context: {query}"
         )
         return llm.invoke(prompt).content
-    
 
     @tool
     def generate_quiz():
@@ -72,7 +79,11 @@ def make_tools(video_id: str):
         structured_llm = llm.with_structured_output(Quiz)
         prompt = f"""Generate a 20-question quiz based on the following transcript chunks:
         {chunks}. Use a mix of questions aimed at testing understanding of the content,
-        and questions about the specific language used."""
+        and questions about the specific language used.
+        For each question, provide:
+        - correct_answer: the correct answer as a short, clear phrase
+        - distractors: exactly 3 plausible but incorrect answers, similar in style and length to correct_answer
+        Do NOT put the correct answer inside distractors."""
         result: Quiz = structured_llm.invoke(prompt)  # type: ignore[assignment]
         return result.model_dump()
 
