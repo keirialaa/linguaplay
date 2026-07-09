@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000";
+const APP_PASSWORD = import.meta.env.VITE_APP_PASSWORD ?? "";
 
 function EntryView({
   changeStage,
@@ -45,7 +46,7 @@ function EntryView({
             try {
               const response = await fetch(`${API_URL}/videos`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", "X-App-Password": APP_PASSWORD },
                 body: JSON.stringify({ url: videoURL }),
               });
               if (!response.ok) {
