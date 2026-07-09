@@ -11,7 +11,7 @@ Turn any YouTube video into an interactive language class. Paste a link — Ling
 - **Answers questions** about the video content and language via a conversational AI agent
 - **Explains** grammar, vocabulary, idioms, and slang in context — grounded in what was actually said in the video
 - **Shows** the full timestamped transcript and extracted vocabulary in dedicated tabs
-
+- **Generates a quiz** to test the user's understanding of the video, at the user's request
 ## Architecture
 
 ```
