@@ -159,8 +159,6 @@ Planned: LangSmith dataset evaluations to systematically measure retrieval accur
 - Video processing takes 30–90 seconds depending on video length (Whisper transcription is the bottleneck)
 
 ## Roadmap
-
-- [ ] Quiz generation — backend tool implemented, frontend rendering in progress
 - [ ] Voice input (speak questions instead of typing)
 - [ ] Automated tests (pytest + Vitest)
 - [ ] Deployment (Render + Vercel)
