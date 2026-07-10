@@ -1,4 +1,6 @@
 import imageio_ffmpeg
+import os
+import tempfile
 import yt_dlp
 from yt_dlp.utils import YoutubeDLError
 from typing import Any, cast
@@ -38,6 +40,15 @@ def download_audio(url: str, output_path: str = "downloads/%(id)s.%(ext)s") -> t
             "preferredquality": "192",
         }],
     }
+
+    # if YOUTUBE_COOKIES env var is set, write to a temp file and pass to yt-dlp
+    cookies_content = os.environ.get("YOUTUBE_COOKIES")
+    cookies_file = None
+    if cookies_content:
+        cookies_file = tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False)
+        cookies_file.write(cookies_content)
+        cookies_file.close()
+        ydl_opts["cookiefile"] = cookies_file.name
     try:
         with yt_dlp.YoutubeDL(cast(Any, ydl_opts)) as ydl:
             # fetch metadata first to check duration before downloading
@@ -57,3 +68,6 @@ def download_audio(url: str, output_path: str = "downloads/%(id)s.%(ext)s") -> t
         raise
     except YoutubeDLError as e:
         raise AudioExtractionError(f"Could not download audio from '{url}': {e}") from e
+    finally:
+        if cookies_file and os.path.exists(cookies_file.name):
+            os.unlink(cookies_file.name)
