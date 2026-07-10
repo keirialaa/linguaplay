@@ -1,3 +1,4 @@
+import imageio_ffmpeg
 import yt_dlp
 from yt_dlp.utils import YoutubeDLError
 from typing import Any, cast
@@ -30,6 +31,7 @@ def download_audio(url: str, output_path: str = "downloads/%(id)s.%(ext)s") -> t
     ydl_opts = {
         "format": "bestaudio/best",
         "outtmpl": output_path,
+        "ffmpeg_location": imageio_ffmpeg.get_ffmpeg_exe(),
         "postprocessors": [{
             "key": "FFmpegExtractAudio",
             "preferredcodec": "mp3",
