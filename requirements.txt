@@ -173,3 +173,4 @@ yt-dlp==2026.6.9
     # via -r requirements.in
 zstandard==0.25.0
     # via langsmith
+imageio-ffmpeg==0.6.0

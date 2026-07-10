@@ -274,6 +274,32 @@ video {
   font-size: 18px;
   font-family: inherit;
 }
+.chat-input .mic-button {
+  background: rgb(221, 222, 204);
+  color: black;
+  font-size: 14px;
+  padding: 0 14px;
+  height: 36px;
+  border-radius: 18px;
+  transition: transform 0.15s;
+  white-space: nowrap;
+  margin-right: 6px;
+}
+.chat-input .mic-button:hover {
+  transform: scale(1.05);
+}
+.mic-listening {
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
 .button-quiz {
   width: 120px;
   border-radius: 15px;

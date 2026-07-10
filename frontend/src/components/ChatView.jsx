@@ -30,7 +30,7 @@ function ChatView({
           expressions={expressions}
           cultureNote={cultureNote}
         ></ContextPanel>
-        <TabPanel videoId={videoId} sessionId={sessionId} chunks={chunks} vocab={vocab}></TabPanel>
+        <TabPanel videoId={videoId} sessionId={sessionId} language={language} chunks={chunks} vocab={vocab}></TabPanel>
       </div>
     </div>
   );
